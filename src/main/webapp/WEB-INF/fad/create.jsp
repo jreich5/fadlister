@@ -9,7 +9,14 @@
 </head>
 <body>
 
+    <%@ include file="../../partials/navbar.jsp" %>
+
     <h1>Create Fad</h1>
+
+    <form action="/fads/create" method="POST">
+        <%@ include file="./partials/form.jsp" %>
+    </form>
+
 
 </body>
 </html>

@@ -17,6 +17,6 @@ public class FadsCreateServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        String name = request.getParameter("name");
 //        request.setAttribute("name", name);
-        request.getRequestDispatcher("/create.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/fad/create.jsp").forward(request, response);
     }
 }

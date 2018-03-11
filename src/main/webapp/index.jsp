@@ -12,6 +12,7 @@
 </head>
 <body>
 
+    <%@ include file="./partials/navbar.jsp" %>
     <h1>Welcome to Fadlister</h1>
 
 </body>

@@ -11,11 +11,13 @@
 </head>
 <body>
 
+    <%@ include file="../../partials/navbar.jsp" %>
+
     <h1>Index of Fads ${username}</h1>
 
     <c:forEach var="fad" items="${fads}">
 
-        <h3>${fad.title}</h3>
+        <h3><a href="/fads/show?id=${fad.id}">${fad.title}</a></h3>
         <ul>
             <li>${fad.description}</li>
             <li>${fad.isPasse}</li>
