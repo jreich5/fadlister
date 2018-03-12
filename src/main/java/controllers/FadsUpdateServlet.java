@@ -1,5 +1,6 @@
 package controllers;
 
+import dao.DaoFactory;
 import dao.Fads;
 import dao.ListFadsDao;
 import models.Fad;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 @WebServlet(name = "FadsUpdateServlet", urlPatterns = "/fads/update")
@@ -23,7 +25,13 @@ public class FadsUpdateServlet extends HttpServlet {
 
         Fad.fadCount = 1;
 
-        Fads fadsDao = new ListFadsDao();
+        Fads fadsDao = null;
+
+        try {
+            fadsDao = DaoFactory.getFadsDao();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         long id = Integer.parseInt(request.getParameter("id"));
 

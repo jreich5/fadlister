@@ -63,7 +63,7 @@ public class Fad implements Serializable {
         return isPasse;
     }
 
-    public void setPasse(boolean passe) {
+    public void setIsPasse(boolean passe) {
         isPasse = passe;
     }
 
