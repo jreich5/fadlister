@@ -30,6 +30,14 @@ public class Fad implements Serializable {
         this.isPasse = isPasse;
     }
 
+    public Fad(long id, String title, String description, String img_url, boolean isPasse) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.img_url = img_url;
+        this.isPasse = isPasse;
+    }
+
     public long getId() {
         return id;
     }

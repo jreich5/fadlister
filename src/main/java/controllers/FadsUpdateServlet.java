@@ -19,6 +19,25 @@ import java.util.ArrayList;
 public class FadsUpdateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        long id = Long.parseLong(request.getParameter("id"));
+        String title = request.getParameter("title");
+        String description = request.getParameter("description");
+        String img_url = request.getParameter("img_url");
+        boolean isPasse = Boolean.valueOf(request.getParameter("isPasse"));
+
+        Fad fad = new Fad(id, title, description, img_url, isPasse);
+
+        Fads fadsDao = null;
+
+        try {
+            fadsDao = DaoFactory.getFadsDao();
+            fadsDao.save(fad);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        response.sendRedirect("/fads");
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: JustinReich
@@ -8,24 +9,28 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <label for="title">Title</label>
-<input type="text" name="title" value="" id="title" placeholder="Enter fad title">
+<input type="text" name="title" id="title" placeholder="Enter fad title" value="${fad.title}">
 <br>
 
 <label for="description">Description</label>
 <br>
-<textarea name="description" id="description" cols="30" rows="10" value="" placeholder="Enter fad description"></textarea>
+<textarea name="description" id="description" cols="30" rows="10" placeholder="Enter fad description">${fad.description}</textarea>
 
 <br>
 
 <label for="img">Image</label>
-<input id="img" type="text" name="img_url" value="" placeholder="Enter image address">
+<input id="img" type="text" name="img_url" value="${fad.img_url}" placeholder="Enter image address">
 
 <br>
 
 <label for="isPasse">Is Passe?</label>
-<input id="isPasse" type="checkbox" name="isPasse">
+<input id="isPasse" type="checkbox" name="isPasse" value="true"
+<c:if test="${fad.isPasse}">
+    ${"checked"}
+</c:if>
+>
 
-<input type="hidden" name="id" value="">
+<input type="hidden" name="id" value="${fad.id}">
 
 <br>
 
