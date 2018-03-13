@@ -24,3 +24,9 @@ CREATE TABLE fads (
   PRIMARY KEY (id)
 
 );
+
+
+
+
+
+# UPDATE fads SET title = 'TEST', description = 'TEST', img_url = 'TEST', isPasse = true, updated_at = NOW()  WHERE id = 1;

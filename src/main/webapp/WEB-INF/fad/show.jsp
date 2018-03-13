@@ -9,7 +9,7 @@
 </head>
 <body>
 
-    <%@ include file="../../partials/navbar.jsp" %>
+    <%--<%@ include file="partials/navbar.jsp" %>--%>
 
     <h1>Show Fad</h1>
 

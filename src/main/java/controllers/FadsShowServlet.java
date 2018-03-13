@@ -11,15 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 @WebServlet(name = "FadsShowServlet", urlPatterns = "/fads/show")
 public class FadsShowServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        Fad.fadCount = 1;
 
         Fads fadsDao = null;
         try {
@@ -30,10 +26,16 @@ public class FadsShowServlet extends HttpServlet {
 
         long id = Integer.parseInt(request.getParameter("id"));
 
-        Fad fad = fadsDao.findById((int) id);
+        Fad fad = null;
+        try {
+            fad = fadsDao.findById((int) id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         request.setAttribute("fad", fad);
 
         request.getRequestDispatcher("/WEB-INF/fad/show.jsp").forward(request, response);
+
     }
 }

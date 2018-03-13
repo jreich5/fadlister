@@ -23,8 +23,6 @@ public class FadsUpdateServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        Fad.fadCount = 1;
-
         Fads fadsDao = null;
 
         try {
@@ -35,11 +33,16 @@ public class FadsUpdateServlet extends HttpServlet {
 
         long id = Integer.parseInt(request.getParameter("id"));
 
-        Fad fad = fadsDao.findById((int) id);
+        Fad fad = null;
+
+        try {
+            fad = fadsDao.findById((int) id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         request.setAttribute("fad", fad);
 
-        request.setAttribute("fad", fad);
         request.getRequestDispatcher("/WEB-INF/fad/update.jsp").forward(request, response);
 
     }

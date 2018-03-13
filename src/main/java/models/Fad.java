@@ -4,8 +4,6 @@ import java.io.Serializable;
 
 public class Fad implements Serializable {
 
-    public static long fadCount = 1;
-
     private long id;
     private String title;
     private String description;
@@ -17,14 +15,19 @@ public class Fad implements Serializable {
     public Fad() {}
 
     public Fad(String title, String description, String img_url, boolean isPasse, String created_at, String updated_at) {
-        this.id = Fad.fadCount;
         this.title = title;
         this.description = description;
         this.img_url = img_url;
         this.isPasse = isPasse;
         this.created_at = created_at;
         this.updated_at = updated_at;
-        Fad.fadCount += 1;
+    }
+
+    public Fad(String title, String description, String img_url, boolean isPasse) {
+        this.title = title;
+        this.description = description;
+        this.img_url = img_url;
+        this.isPasse = isPasse;
     }
 
     public long getId() {

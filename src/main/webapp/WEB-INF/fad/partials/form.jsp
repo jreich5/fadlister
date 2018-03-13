@@ -25,6 +25,8 @@
 <label for="isPasse">Is Passe?</label>
 <input id="isPasse" type="checkbox" name="isPasse">
 
+<input type="hidden" name="id" value="">
+
 <br>
 
 <button>Submit</button>
