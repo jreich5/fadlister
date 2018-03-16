@@ -24,7 +24,7 @@ public class FadsShowServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        long id = Integer.parseInt(request.getParameter("id"));
+        long id = Long.parseLong(request.getParameter("id"));
 
         Fad fad = null;
         try {
@@ -35,7 +35,7 @@ public class FadsShowServlet extends HttpServlet {
 
         request.setAttribute("fad", fad);
 
-        request.getRequestDispatcher("/WEB-INF/fad/show.jsp").forward(request, response);
+        request.getRequestDispatcher("/show.jsp").forward(request, response);
 
     }
 }

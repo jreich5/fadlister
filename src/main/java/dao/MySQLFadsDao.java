@@ -73,9 +73,20 @@ public class MySQLFadsDao implements Fads{
     }
 
     @Override
-    public void delete(long id) {
+    public boolean delete(long id) {
 
+        String query = "DELETE FROM fads WHERE id = ?";
 
+        PreparedStatement ps = null;
+        try {
+            ps = conn.prepareStatement(query);
+
+            ps.setLong(1, id);
+            return ps.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error updating fad");
+        }
 
     }
 
@@ -93,7 +104,7 @@ public class MySQLFadsDao implements Fads{
 
     private boolean update(Fad fad) {
 
-        String query = "UPDATE fads SET title = ?, description = ?, img_url = ?, isPasse = ?, updated_at = NOW()  WHERE id = ?";
+        String query = "UPDATE fads SET title = ?, description = ?, img_url = ?, isPasse = ?, updated_at = NOW() WHERE id = ?";
 
         PreparedStatement ps = null;
         try {

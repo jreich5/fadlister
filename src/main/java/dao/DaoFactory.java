@@ -6,7 +6,7 @@ import java.sql.SQLException;
 public class DaoFactory {
 
     private static Fads fadsDao;
-    private static Config config = new Config();
+    private static dao.Config config = new dao.Config();
 
     public static Fads getFadsDao() throws SQLException {
         if (fadsDao == null) {

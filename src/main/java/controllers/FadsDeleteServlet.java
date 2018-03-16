@@ -15,11 +15,16 @@ import java.sql.SQLException;
 public class FadsDeleteServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        long id = Long.parseLong(request.getParameter("id"));
+
         try {
             Fads fadsDao = DaoFactory.getFadsDao();
+            fadsDao.delete(id);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        response.sendRedirect("/fads");
 
     }
 }

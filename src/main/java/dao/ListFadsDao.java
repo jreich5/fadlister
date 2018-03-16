@@ -25,8 +25,9 @@ public class ListFadsDao implements Fads {
     }
 
     @Override
-    public void delete(long id) {
+    public boolean delete(long id) {
         fads.remove(id);
+        return true;
     }
 
     @Override

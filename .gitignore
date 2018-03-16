@@ -1,5 +1,6 @@
 *.iml
 .idea/*
-Config.java
+dao.Config.java
 target/*
 databasePlan
+to_do.txt

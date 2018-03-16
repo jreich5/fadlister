@@ -35,7 +35,7 @@ public class FadsIndexServlet extends HttpServlet {
         session.setAttribute("username", "John");
 
         request.setAttribute("fads", fads);
-        request.getRequestDispatcher("/WEB-INF/fad/index.jsp").forward(request, response);
+        request.getRequestDispatcher("/index.jsp").forward(request, response);
 
     }
 }

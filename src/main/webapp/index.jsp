@@ -8,12 +8,13 @@
 
 <html>
 <head>
-    <title>Title</title>
+    <title>Welcome to Fadlister</title>
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 
-    <%@ include file="./partials/navbar.jsp" %>
-    <h1>Welcome to Fadlister</h1>
+    <%@ include file="partials/navbar.jsp" %>
+    <h1>Welcome to asdf</h1>
 
 </body>
 </html>

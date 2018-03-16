@@ -9,9 +9,9 @@
 
 <nav>
     <ul>
-        <li><a href="/">Fadlister</a></li>
-        <li><a href="/fads">View Fads</a></li>
-        <li><a href="/fads/create">Create Fad</a></li>
+        <li><a href="${pageContext.request.contextPath}/">Fadlister</a></li>
+        <li><a href="${pageContext.request.contextPath}/fads">View Fads</a></li>
+        <li><a href="${pageContext.request.contextPath}/fads/create">Create Fad</a></li>
     </ul>
 </nav>
 

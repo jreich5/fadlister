@@ -13,7 +13,7 @@
 
     <h1>Create Fad</h1>
 
-    <form action="/fads/create" method="POST">
+    <form action="${pageContext.request.contextPath}/fads/create" method="POST">
         <%@ include file="./partials/form.jsp" %>
     </form>
 
