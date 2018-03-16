@@ -2,7 +2,7 @@ package dao;
 
 public class Config {
 
-    private String url = "jdbc:mysql://localhost/fad_db?useSSL=false";
+    private String url = "jdbc:mysql://localhost/fad_db?useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private String user = "fad_user";
     private String password = "getmein";
 

@@ -1,7 +1,7 @@
-package controllers;
+package controllers.fads;
 
 import dao.DaoFactory;
-import dao.Fads;
+import dao.fads.Fads;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

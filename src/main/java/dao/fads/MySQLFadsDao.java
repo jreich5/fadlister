@@ -1,6 +1,7 @@
-package dao;
+package dao.fads;
 
 import com.mysql.cj.jdbc.Driver;
+import dao.Config;
 import models.Fad;
 
 import java.sql.*;
@@ -24,51 +25,64 @@ public class MySQLFadsDao implements Fads{
     }
 
     @Override
-    public List<Fad> all() throws SQLException {
+    public List<Fad> all() {
 
         String query = "SELECT * FROM fads";
-        Statement st = conn.createStatement();
-        ResultSet rs = st.executeQuery(query);
-        List<Fad> fads = new ArrayList<>();
+        Statement st = null;
+        try {
+            st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            List<Fad> fads = new ArrayList<>();
 
-        while (rs.next()) {
-            Fad fad = new Fad();
-            fad.setId(rs.getLong("id"));
-            fad.setTitle(rs.getString("title"));
-            fad.setDescription(rs.getString("description"));
-            fad.setImg_url(rs.getString("img_url"));
-            fad.setIsPasse(rs.getBoolean("isPasse"));
-            fad.setCreated_at(rs.getString("created_at"));
-            fad.setUpdated_at(rs.getString("updated_at"));
-            fads.add(fad);
+            while (rs.next()) {
+                Fad fad = new Fad();
+                fad.setId(rs.getLong("id"));
+                fad.setTitle(rs.getString("title"));
+                fad.setDescription(rs.getString("description"));
+                fad.setImg_url(rs.getString("img_url"));
+                fad.setIsPasse(rs.getBoolean("isPasse"));
+                fad.setCreated_at(rs.getString("created_at"));
+                fad.setUpdated_at(rs.getString("updated_at"));
+                fads.add(fad);
+            }
+
+            return fads;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error with retrieving all fads");
         }
-
-        return fads;
-
     }
 
     @Override
-    public Fad findById(long id) throws SQLException {
+    public Fad findById(long id) {
 
         String query = "SELECT * FROM fads WHERE id = ?";
-        PreparedStatement ps = conn.prepareStatement(query);
-        ps.setLong(1, id);
 
-        ResultSet rs = ps.executeQuery();
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setLong(1, id);
 
-        rs.next();
+            ResultSet rs = ps.executeQuery();
 
-        Fad fad = new Fad(rs.getString("title"),
-            rs.getString("description"),
-            rs.getString("img_url"),
-            rs.getBoolean("isPasse"),
-            rs.getString("created_at"),
-            rs.getString("updated_at")
-        );
+            rs.next();
 
-        fad.setId(rs.getLong("id"));
+            Fad fad = new Fad(rs.getString("title"),
+                rs.getString("description"),
+                rs.getString("img_url"),
+                rs.getBoolean("isPasse"),
+                rs.getString("created_at"),
+                rs.getString("updated_at")
+            );
 
-        return fad;
+            fad.setId(rs.getLong("id"));
+
+            return fad;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error finding by ID");
+        }
 
     }
 

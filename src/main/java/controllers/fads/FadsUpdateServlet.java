@@ -1,7 +1,7 @@
-package controllers;
+package controllers.fads;
 
 import dao.DaoFactory;
-import dao.Fads;
+import dao.fads.Fads;
 import models.Fad;
 
 import javax.servlet.ServletException;
@@ -10,24 +10,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
 
-@WebServlet(name = "FadsCreateServlet", urlPatterns = "/fads/create")
-public class FadsCreateServlet extends HttpServlet {
+@WebServlet(name = "FadsUpdateServlet", urlPatterns = "/fads/update")
+public class FadsUpdateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        long id = Long.parseLong(request.getParameter("id"));
         String title = request.getParameter("title");
         String description = request.getParameter("description");
         String img_url = request.getParameter("img_url");
-        boolean isPasse = Boolean.getBoolean(request.getParameter("isPasse"));
+        boolean isPasse = Boolean.valueOf(request.getParameter("isPasse"));
 
-        Fad fad = new Fad(title, description, img_url, isPasse);
+        Fad fad = new Fad(id, title, description, img_url, isPasse);
+
+        Fads fadsDao = null;
 
         try {
-            Fads fadsDao = DaoFactory.getFadsDao();
+            fadsDao = DaoFactory.getFadsDao();
             fadsDao.save(fad);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -38,6 +38,27 @@ public class FadsCreateServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/fad/create.jsp").forward(request, response);
+
+        Fads fadsDao = null;
+
+        try {
+            fadsDao = DaoFactory.getFadsDao();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        long id = Integer.parseInt(request.getParameter("id"));
+
+        Fad fad = null;
+
+
+        fad = fadsDao.findById((int) id);
+
+
+        request.setAttribute("fad", fad);
+
+        request.getRequestDispatcher("/WEB-INF/fad/update.jsp").forward(request, response);
+
     }
+
 }
