@@ -23,12 +23,8 @@ public class FadsCreateServlet extends HttpServlet {
 
         Fad fad = new Fad(title, description, img_url, isPasse);
 
-        try {
-            Fads fadsDao = DaoFactory.getFadsDao();
-            fadsDao.save(fad);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        Fads fadsDao = DaoFactory.getFadsDao();
+        fadsDao.save(fad);
 
         response.sendRedirect("/fads");
 

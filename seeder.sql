@@ -19,3 +19,10 @@ VALUES ('Bobby Bobberson', 'bobby@email.com', 'badPass', NOW(), NOW()),
   ('Walter White', 'walter@email.com', 'badPass', NOW(), NOW()),
   ('Skylar White', 'skylar@email.com', 'badPass', NOW(), NOW()),
   ('Gus Fring', 'gus@email.com', 'badPass', NOW(), NOW());
+
+
+
+
+SELECT * FROM users;
+
+SELECT * FROM fads;

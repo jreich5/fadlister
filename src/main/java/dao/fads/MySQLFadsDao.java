@@ -13,14 +13,19 @@ public class MySQLFadsDao implements Fads{
 
     private Connection conn;
 
-    public MySQLFadsDao(Config config) throws SQLException {
+    public MySQLFadsDao(Config config){
 
-        DriverManager.registerDriver(new Driver());
-        this.conn = DriverManager.getConnection(
-            config.getUrl(),
-            config.getUser(),
-            config.getPassword()
-        );
+        try {
+            DriverManager.registerDriver(new Driver());
+            this.conn = DriverManager.getConnection(
+                config.getUrl(),
+                config.getUser(),
+                config.getPassword()
+            );
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Problem registering driver");
+        }
 
     }
 
@@ -143,11 +148,8 @@ public class MySQLFadsDao implements Fads{
 
         String query = "INSERT INTO fads (title, description, img_url, isPasse, created_at, updated_at) VALUES (?, ?, ?, ?, NOW(), NOW())";
 
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-
         try {
-            ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
             ps.setString(1, fad.getTitle());
             ps.setString(2, fad.getDescription());
@@ -156,7 +158,7 @@ public class MySQLFadsDao implements Fads{
 
             ps.executeUpdate();
 
-            rs = ps.getGeneratedKeys();
+            ResultSet rs = ps.getGeneratedKeys();
 
             rs.next();
 

@@ -17,12 +17,8 @@ public class FadsDeleteServlet extends HttpServlet {
 
         long id = Long.parseLong(request.getParameter("id"));
 
-        try {
-            Fads fadsDao = DaoFactory.getFadsDao();
-            fadsDao.delete(id);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        Fads fadsDao = DaoFactory.getFadsDao();
+        fadsDao.delete(id);
 
         response.sendRedirect("/fads");
 

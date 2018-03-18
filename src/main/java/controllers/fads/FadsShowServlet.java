@@ -16,23 +16,13 @@ import java.sql.SQLException;
 public class FadsShowServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        Fads fadsDao = null;
-        try {
-            fadsDao = DaoFactory.getFadsDao();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
+        Fads fadsDao = DaoFactory.getFadsDao();
         long id = Long.parseLong(request.getParameter("id"));
+        Fad fad = fadsDao.findById((int) id);
 
-        Fad fad = null;
-
-        fad = fadsDao.findById((int) id);
-
-
+        System.out.println(fad.getTitle());
         request.setAttribute("fad", fad);
-
-        request.getRequestDispatcher("/show.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/fad/show.jsp").forward(request, response);
 
     }
 }

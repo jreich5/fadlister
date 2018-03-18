@@ -26,12 +26,8 @@ public class FadsUpdateServlet extends HttpServlet {
 
         Fads fadsDao = null;
 
-        try {
-            fadsDao = DaoFactory.getFadsDao();
-            fadsDao.save(fad);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        fadsDao = DaoFactory.getFadsDao();
+        fadsDao.save(fad);
 
         response.sendRedirect("/fads");
 
@@ -41,19 +37,13 @@ public class FadsUpdateServlet extends HttpServlet {
 
         Fads fadsDao = null;
 
-        try {
-            fadsDao = DaoFactory.getFadsDao();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        fadsDao = DaoFactory.getFadsDao();
 
         long id = Integer.parseInt(request.getParameter("id"));
 
         Fad fad = null;
 
-
         fad = fadsDao.findById((int) id);
-
 
         request.setAttribute("fad", fad);
 

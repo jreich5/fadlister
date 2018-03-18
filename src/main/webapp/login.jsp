@@ -1,26 +1,26 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-    <script src="js/main.js"></script>
-</head>
+<c:set var="pageTitle" scope="request" value="FadLister: Login"/>
+<%@ include file="/partials/head.jsp" %>
 <body>
 
-    <h1>Login!</h1>
-    <form action="${pageContext.request.contextPath}/login" method="POST">
+    <%@ include file="partials/navbar.jsp" %>
+    <main class="container">
+        <h1>Please Login</h1>
+        <form action="${pageContext.request.contextPath}/login" method="POST">
 
-        <input type="text" name="email">
-        <input type="password" name="password">
-        <button>Submit</button>
+            <label for="email">Email</label>
+            <input id="email" type="text" name="email" placeholder="Enter Email">
+            <br>
+            <label for="password">Password</label>
+            <input id="password" type="password" name="password">
+            <br>
+            <button>Submit</button>
 
-    </form>
+        </form>
+    </main>
+
+    <%@ include file="/partials/scripts.html" %>
 
 </body>
 </html>

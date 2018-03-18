@@ -3,6 +3,7 @@ package dao.users;
 import com.mysql.cj.jdbc.Driver;
 import dao.Config;
 import models.User;
+import org.mindrot.jbcrypt.BCrypt;
 
 import javax.xml.transform.Result;
 import java.sql.*;
@@ -13,14 +14,19 @@ public class MySQLUsersDao implements Users {
 
     private Connection conn;
 
-    public MySQLUsersDao(Config config) throws SQLException {
+    public MySQLUsersDao(Config config) {
 
-        DriverManager.registerDriver(new Driver());
-        this.conn = DriverManager.getConnection(
-                config.getUrl(),
-                config.getUser(),
-                config.getPassword()
-        );
+        try {
+            DriverManager.registerDriver(new Driver());
+            this.conn = DriverManager.getConnection(
+                    config.getUrl(),
+                    config.getUser(),
+                    config.getPassword()
+            );
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Problem registering driver");
+        }
 
     }
 
@@ -105,9 +111,49 @@ public class MySQLUsersDao implements Users {
     }
 
     @Override
-    public void save() {
+    public void save(User user) {
+        if (user.getId() == 0) {
+            insert(user);
+        } else {
+            update(user);
+        }
+    }
+
+    public long insert(User user) {
+
+        String query = "INSERT INTO users (name, email, password, created_at, updated_at) VALUES (?, ?, ?, NOW(), NOW())";
+
+        try {
+            PreparedStatement ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, user.getName());
+            ps.setString(2, user.getEmail());
+            ps.setString(3, hashPassword(user.getPassword()));
+
+            ps.executeUpdate();
+
+            ResultSet rs = ps.getGeneratedKeys();
+
+            rs.next();
+
+            return rs.getLong(1);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error inserting new user");
+        }
 
     }
+
+    public void update(User user) {
+
+    }
+
+    public String hashPassword(String password) {
+        int numberOfRounds = 12;
+        String hash = BCrypt.hashpw(password, BCrypt.gensalt(numberOfRounds));
+        return hash;
+    }
+
 
     @Override
     public long verifyEmailPass(String email, String pass) {

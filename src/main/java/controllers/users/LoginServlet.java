@@ -35,7 +35,7 @@ public class LoginServlet extends HttpServlet {
             out.println("<h1>Invalid Login!</h1>");
         } else {
             HttpSession session = request.getSession();
-            session.setAttribute("user", usersDao.findById(verifiedId).getEmail());
+            session.setAttribute("user", usersDao.findById(verifiedId));
             response.sendRedirect("/fads");
         }
 

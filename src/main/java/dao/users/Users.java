@@ -11,7 +11,7 @@ public interface Users {
     User findUserByEmail();
     User findById(long id);
     boolean delete();
-    void save();
+    void save(User user);
     long verifyEmailPass(String email, String pass);
 
 }

@@ -23,13 +23,9 @@ public class FadsIndexServlet extends HttpServlet {
 
         List<Fad> fads;
 
-        try {
-            fadsDao = DaoFactory.getFadsDao();
-            fads = fadsDao.all();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            fads = null;
-        }
+        fadsDao = DaoFactory.getFadsDao();
+        fads = fadsDao.all();
+
 
         HttpSession session = request.getSession();
         session.setAttribute("username", "John");
