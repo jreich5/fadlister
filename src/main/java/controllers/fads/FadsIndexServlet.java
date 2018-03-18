@@ -2,7 +2,9 @@ package controllers.fads;
 
 import dao.DaoFactory;
 import dao.fads.Fads;
+import dao.users.Users;
 import models.Fad;
+import models.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,6 +27,11 @@ public class FadsIndexServlet extends HttpServlet {
 
         fadsDao = DaoFactory.getFadsDao();
         fads = fadsDao.all();
+
+//        Users usersDao = DaoFactory.getUsersDao();
+//        User user = usersDao.find("email", "asdf");
+//        System.out.println(user);
+
 
 
         HttpSession session = request.getSession();

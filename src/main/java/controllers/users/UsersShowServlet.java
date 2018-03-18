@@ -18,14 +18,10 @@ public class UsersShowServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         Users usersDao;
-        try {
-            usersDao = DaoFactory.getUsersDao();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Error showing individual user servlet");
-        }
 
-        User user = usersDao.findById(Long.parseLong(request.getParameter("id")));
+        usersDao = DaoFactory.getUsersDao();
+
+        User user = usersDao.find("id", request.getParameter("id"));
 
         request.setAttribute("user", user);
 

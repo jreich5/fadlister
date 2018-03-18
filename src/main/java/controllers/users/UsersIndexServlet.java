@@ -23,12 +23,8 @@ public class UsersIndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         Users usersDao;
-        try {
-            usersDao = DaoFactory.getUsersDao();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Problem with getting users from servlet");
-        }
+
+        usersDao = DaoFactory.getUsersDao();
 
         List<User> users = usersDao.all();
 

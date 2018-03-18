@@ -14,15 +14,20 @@ VALUES ('A Fad Title 1', 'This is a fad description 1.', 'http://via.placeholder
 TRUNCATE users;
 
 INSERT INTO users (name, email, password, created_at, updated_at)
-VALUES ('Bobby Bobberson', 'bobby@email.com', 'badPass', NOW(), NOW()),
-  ('Sally Smith', 'sally@email.com', 'badPass', NOW(), NOW()),
-  ('Walter White', 'walter@email.com', 'badPass', NOW(), NOW()),
-  ('Skylar White', 'skylar@email.com', 'badPass', NOW(), NOW()),
-  ('Gus Fring', 'gus@email.com', 'badPass', NOW(), NOW());
+VALUES ('Bobby Bobberson', 'bobby@email.com', 'pass', NOW(), NOW()),
+  ('Sally Smith', 'sally@email.com', 'pass', NOW(), NOW()),
+  ('Walter White', 'walter@email.com', 'pass', NOW(), NOW()),
+  ('Skylar White', 'skylar@email.com', 'pass', NOW(), NOW()),
+  ('Gus Fring', 'gus@email.com', 'pass', NOW(), NOW());
 
 
 
+
+# Testing
 
 SELECT * FROM users;
 
 SELECT * FROM fads;
+
+
+SELECT * FROM users WHERE email = 'bobby@email.com';
