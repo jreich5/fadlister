@@ -34,9 +34,3 @@
         </ul>
     </div>
 </nav>
-
-<c:if test="${sessionScope.user == null}">
-    <h1>User is null</h1>
-</c:if>
-
-<c:out value="${sessionScope.user}"/>

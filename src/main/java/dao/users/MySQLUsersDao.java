@@ -149,8 +149,7 @@ public class MySQLUsersDao implements Users {
 
     public String hashPassword(String password) {
         int numberOfRounds = 12;
-        String hash = BCrypt.hashpw(password, BCrypt.gensalt(numberOfRounds));
-        return hash;
+        return BCrypt.hashpw(password, BCrypt.gensalt(numberOfRounds));
     }
 
 
@@ -159,28 +158,13 @@ public class MySQLUsersDao implements Users {
 
         User user = find("email", email);
 
-        System.out.println(user);
-
-        if (pass.equals("pass")) {
-            if (user == null) {
-                System.out.println(email);
-                return 0;
-            } else {
-                if (user.getPassword().equals(pass)) {
-                    return user.getId();
-                } else {
-                    return 0;
-                }
-            }
+        if (user == null) {
+            return 0;
         } else {
-            if (user == null) {
-                return 0;
+            if (BCrypt.checkpw(pass, user.getPassword())) {
+                return user.getId();
             } else {
-                if (BCrypt.checkpw(pass, user.getPassword())) {
-                    return user.getId();
-                } else {
-                    return 0;
-                }
+                return 0;
             }
         }
 
