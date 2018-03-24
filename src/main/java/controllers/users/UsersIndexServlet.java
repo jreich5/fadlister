@@ -3,6 +3,7 @@ package controllers.users;
 import dao.DaoFactory;
 import dao.users.Users;
 import models.User;
+import services.Auth;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,6 +22,12 @@ public class UsersIndexServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        Auth auth = new Auth(request);
+        if (!auth.shouldRedirect()) {
+            response.sendRedirect("/login");
+            return;
+        }
 
         Users usersDao;
 

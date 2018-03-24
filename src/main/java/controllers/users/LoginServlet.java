@@ -2,6 +2,7 @@ package controllers.users;
 
 import dao.DaoFactory;
 import dao.users.Users;
+import services.Auth;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,9 +35,8 @@ public class LoginServlet extends HttpServlet {
         } else {
             HttpSession session = request.getSession();
             session.setAttribute("user", usersDao.find("id", Long.toString(verifiedId)));
-            response.sendRedirect("/fads");
+            response.sendRedirect("/users/show?id=" + verifiedId);
         }
-
 
     }
 

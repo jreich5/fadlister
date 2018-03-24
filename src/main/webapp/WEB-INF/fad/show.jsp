@@ -13,17 +13,20 @@
         <h3><c:out value="${fad.title}"/></h3>
         <ul>
             <li><c:out value="${fad.description}"/></li>
-            <li><c:out value="${fad.isPasse}"/></li>
+            <li><c:out value="${fad.passe}"/></li>
             <li><img src="<c:out value="${fad.img_url}" />"></li>
             <li><c:out value="${fad.created_at}" /></li>
             <li><c:out value="${fad.updated_at}" /></li>
+            <li>By: <c:out value="${fad.user.name}"/></li>
         </ul>
 
-        <a href="${pageContext.request.contextPath}/fads/update?id=<c:out value="${fad.id}" />">Edit Ad</a>
-        <form action="${pageContext.request.contextPath}/fads/delete" method="POST">
-            <input type="hidden" name="id" value="${fad.id}">
-            <button>Delete</button>
-        </form>
+        <c:if test="${currentUserFad}">
+            <a href="${pageContext.request.contextPath}/fads/update?id=<c:out value="${fad.id}" />">Edit Ad</a>
+            <form action="${pageContext.request.contextPath}/fads/delete" method="POST">
+                <input type="hidden" name="id" value="${fad.id}">
+                <button>Delete</button>
+            </form>
+        </c:if>
 
     </main>
 

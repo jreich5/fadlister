@@ -8,34 +8,33 @@ public class Fad implements Serializable {
     private String title;
     private String description;
     private String img_url;
-    private boolean isPasse;
+    private boolean passe;
+    private User user;
     private String created_at;
     private String updated_at;
 
-    public Fad() {}
+    public Fad() {
+    }
 
-    public Fad(String title, String description, String img_url, boolean isPasse, String created_at, String updated_at) {
+    // fad insert
+    public Fad(String title, String description, String img_url, boolean passe, User user) {
         this.title = title;
         this.description = description;
         this.img_url = img_url;
-        this.isPasse = isPasse;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
+        this.passe = passe;
+        this.user = user;
     }
 
-    public Fad(String title, String description, String img_url, boolean isPasse) {
-        this.title = title;
-        this.description = description;
-        this.img_url = img_url;
-        this.isPasse = isPasse;
-    }
-
-    public Fad(long id, String title, String description, String img_url, boolean isPasse) {
+    // fad get
+    public Fad(long id, String title, String description, String img_url, boolean passe, User user, String created_at, String updated_at) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.img_url = img_url;
-        this.isPasse = isPasse;
+        this.passe = passe;
+        this.user = user;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
     }
 
     public long getId() {
@@ -70,12 +69,20 @@ public class Fad implements Serializable {
         this.img_url = img_url;
     }
 
-    public boolean getIsPasse() {
-        return isPasse;
+    public boolean isPasse() {
+        return passe;
     }
 
-    public void setIsPasse(boolean passe) {
-        isPasse = passe;
+    public void setPasse(boolean passe) {
+        passe = passe;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getCreated_at() {
@@ -93,4 +100,5 @@ public class Fad implements Serializable {
     public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
     }
+
 }

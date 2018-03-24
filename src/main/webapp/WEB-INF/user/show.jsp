@@ -20,5 +20,19 @@
     <p><c:out value="${user.created_at}" /></p>
     <p><c:out value="${user.updated_at}" /></p>
 
+
+    <c:forEach var="fad" items="${fads}">
+
+        <h3><a href="${pageContext.request.contextPath}/fads/show?id=<c:out value="${fad.id}"/>"><c:out value="${fad.title}"/></a></h3>
+        <ul>
+            <li><c:out value="${fad.description}"/></li>
+            <li><c:out value="${fad.passe}"/></li>
+            <li><img src="<c:out value="${fad.img_url}" />"></li>
+            <li><c:out value="${fad.created_at}" /></li>
+            <li><c:out value="${fad.updated_at}" /></li>
+        </ul>
+
+    </c:forEach>
+
 </body>
 </html>

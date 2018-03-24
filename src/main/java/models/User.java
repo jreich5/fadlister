@@ -11,12 +11,14 @@ public class User {
 
     public User() {}
 
+    // user insert
     public User(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = password;
     }
 
+    // user get
     public User(long id, String name, String email, String password, String created_at, String updated_at) {
         this.id = id;
         this.name = name;
@@ -25,7 +27,15 @@ public class User {
         this.created_at = created_at;
         this.updated_at = updated_at;
     }
+    
+    // user get for fad
 
+
+    public User(long id, String name, String email) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+    }
 
     public String getName() {
         return name;

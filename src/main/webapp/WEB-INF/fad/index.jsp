@@ -14,10 +14,11 @@
             <h3><a href="${pageContext.request.contextPath}/fads/show?id=<c:out value="${fad.id}"/>"><c:out value="${fad.title}"/></a></h3>
             <ul>
                 <li><c:out value="${fad.description}"/></li>
-                <li><c:out value="${fad.isPasse}"/></li>
+                <li><c:out value="${fad.passe}"/></li>
                 <li><img src="<c:out value="${fad.img_url}" />"></li>
                 <li><c:out value="${fad.created_at}" /></li>
                 <li><c:out value="${fad.updated_at}" /></li>
+                <li>By: <c:out value="${fad.user.name}"/></li>
             </ul>
 
         </c:forEach>

@@ -1,6 +1,7 @@
 package controllers.users;
 
 import models.User;
+import services.Auth;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +14,13 @@ import java.io.IOException;
 @WebServlet(name = "LogoutServlet", urlPatterns = "/logout")
 public class LogoutServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        Auth auth = new Auth(request);
+        if (!auth.shouldRedirect()) {
+            response.sendRedirect("/login");
+            return;
+        }
+
         HttpSession session = request.getSession();
         session.invalidate();
         response.sendRedirect("/");

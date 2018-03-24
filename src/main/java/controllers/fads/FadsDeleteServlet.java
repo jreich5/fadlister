@@ -2,6 +2,7 @@ package controllers.fads;
 
 import dao.DaoFactory;
 import dao.fads.Fads;
+import services.Auth;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +15,12 @@ import java.sql.SQLException;
 @WebServlet(name = "FadsDeleteServlet", urlPatterns = "/fads/delete")
 public class FadsDeleteServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        Auth auth = new Auth(request);
+        if (!auth.shouldRedirect()) {
+            response.sendRedirect("/login");
+            return;
+        }
 
         long id = Long.parseLong(request.getParameter("id"));
 

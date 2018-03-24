@@ -24,8 +24,8 @@
 <br>
 
 <label for="isPasse">Is Passe?</label>
-<input id="isPasse" type="checkbox" name="isPasse" value="true"
-<c:if test="${fad.isPasse}">
+<input id="isPasse" type="checkbox" name="passe" value="true"
+<c:if test="${fad.passe}">
     ${"checked"}
 </c:if>
 >
