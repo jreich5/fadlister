@@ -14,7 +14,9 @@
     <%@ include file="partials/navbar.jsp" %>
 
     <main class="container">
-        <h1 class="title">Welcome to FadLister!</h1>
+        <h1 class="title">FadLister</h1>
+        <img src="img/dab.png" alt="">
+        <img src="img/elmo2.jpg" width="350">
     </main>
 
     <%@ include file="/partials/scripts.html" %>

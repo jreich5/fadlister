@@ -27,8 +27,6 @@ public class LoginServlet extends HttpServlet {
 
         long verifiedId = usersDao.verifyEmailPass(email, password);
 
-        System.out.println(verifiedId);
-
         if (verifiedId == 0) {
             PrintWriter out = response.getWriter();
             out.println("<h1>Invalid Login!</h1>");

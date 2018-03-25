@@ -29,7 +29,7 @@ public class RegisterServlet extends HttpServlet {
         } else {
             User user = new User(name, email, password);
             usersDao.save(user);
-            response.sendRedirect("/fads");
+            response.sendRedirect("/login");
         }
 
     }

@@ -42,7 +42,6 @@ public class FadsShowServlet extends HttpServlet {
 
         Fad fad = fadsDao.findById((int) id);
 
-        System.out.println(fad.getTitle());
         request.setAttribute("fad", fad);
         request.setAttribute("currentUserFad", currentUserFad);
         request.getRequestDispatcher("/WEB-INF/fad/show.jsp").forward(request, response);

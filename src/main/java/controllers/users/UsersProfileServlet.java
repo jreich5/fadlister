@@ -13,14 +13,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(name = "UsersShowServlet", urlPatterns = "/users/show")
-public class UsersShowServlet extends HttpServlet {
+@WebServlet(name = "UsersProfileServlet", urlPatterns = "/users/profile")
+public class UsersProfileServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         Auth auth = new Auth(request);
         if (!auth.shouldRedirect()) {
             response.sendRedirect("/login");
@@ -30,21 +28,16 @@ public class UsersShowServlet extends HttpServlet {
         Users usersDao = DaoFactory.getUsersDao();
         Fads fadsDao = DaoFactory.getFadsDao();
 
-        String id = request.getParameter("id");
+        long id = auth.getAuthUserId();
 
-        User user = usersDao.find("id", id);
+        User user = usersDao.find("id", Long.toString(id));
 
-        List<Fad> fads = fadsDao.getFadsByUser(Long.parseLong(id));
+        List<Fad> fads = fadsDao.getFadsByUser(id);
 
         request.setAttribute("user", user);
         request.setAttribute("fads", fads);
 
-        if (auth.getAuthUserId() == Long.parseLong(id)) {
-            System.out.println("Ran");
-            response.sendRedirect("/users/profile");
-        } else {
-            request.getRequestDispatcher("/WEB-INF/user/show.jsp").forward(request, response);
-        }
+        request.getRequestDispatcher("/WEB-INF/user/profile.jsp").forward(request, response);
 
     }
 }

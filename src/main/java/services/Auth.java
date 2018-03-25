@@ -1,6 +1,7 @@
 package services;
 
 import com.sun.deploy.net.HttpRequest;
+import models.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,6 +37,12 @@ public class Auth {
     public boolean verifyUser() {
         HttpSession session = request.getSession();
         return session.getAttribute("user") != null;
+    }
+
+    public long getAuthUserId() {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        return user.getId();
     }
 
 }

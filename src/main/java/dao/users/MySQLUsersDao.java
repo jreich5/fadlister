@@ -105,8 +105,20 @@ public class MySQLUsersDao implements Users {
 
 
     @Override
-    public boolean delete() {
-        return false;
+    public boolean delete(long id) {
+
+        String query = "DELETE FROM users WHERE id = ?";
+
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setLong(1, id);
+            return ps.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Problem");
+            throw new RuntimeException("Error deleting user");
+        }
+
     }
 
     @Override
@@ -143,8 +155,23 @@ public class MySQLUsersDao implements Users {
 
     }
 
-    public void update(User user) {
+    public boolean update(User user) {
+        String query = "UPDATE users SET name = ?, email = ?, password = ?, updated_at = NOW() WHERE id = ?";
 
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+
+            ps.setString(1, user.getName());
+            ps.setString(2, user.getEmail());
+            ps.setString(3, user.getPassword());
+            ps.setLong(4, user.getId());
+
+            return ps.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error updating fad");
+        }
     }
 
     public String hashPassword(String password) {
