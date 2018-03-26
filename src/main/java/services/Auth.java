@@ -1,6 +1,7 @@
 package services;
 
 import com.sun.deploy.net.HttpRequest;
+import models.Fad;
 import models.User;
 
 import javax.servlet.http.HttpServletRequest;
@@ -43,6 +44,13 @@ public class Auth {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         return user.getId();
+    }
+
+    public boolean verifyFadUser(Fad fad) {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        User fadUser = fad.getUser();
+        return user.getId() == fadUser.getId();
     }
 
 }

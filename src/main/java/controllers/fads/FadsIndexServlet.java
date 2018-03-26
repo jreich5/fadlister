@@ -28,7 +28,6 @@ public class FadsIndexServlet extends HttpServlet {
             return;
         }
 
-
         Fads fadsDao = null;
 
         List<Fad> fads;
@@ -41,9 +40,6 @@ public class FadsIndexServlet extends HttpServlet {
 
         request.setAttribute("fads", fads);
         request.getRequestDispatcher("/WEB-INF/fad/index.jsp").forward(request, response);
-
-
-
 
     }
 }

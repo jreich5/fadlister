@@ -6,23 +6,28 @@
 
     <%@ include file="../../partials/navbar.jsp" %>
 
-    <h1>View Users JSP</h1>
+    <main class="container">
+        <h1>Community Members</h1>
 
-    <c:if test="${sessionScope.user == null}">
-        <h1>User is logged out</h1>
-    </c:if>
+        <c:forEach items="${users}" var="user">
 
-    <c:forEach items="${users}" var="user">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">
+                        <a href="${pageContext.request.contextPath}/users/show?id=<c:out value="${user.id}"/>"><c:out value="${user.name}" /></a>
+                    </h3>
+                    <ul>
+                        <li>Email: <c:out value="${user.email}" /></li>
+                        <li>Joined: <c:out value="${user.created_at}" /></li>
+                        <li>Last updated profile: <c:out value="${user.updated_at}" /></li>
+                    </ul>
+                </div>
+            </div>
 
-        <h3><a href="${pageContext.request.contextPath}/users/show?id=<c:out value="${user.id}"/>"><c:out value="${user.name}" /></a></h3>
-        <ul>
-            <li><c:out value="${user.email}" /></li>
-            <li><c:out value="${user.created_at}" /></li>
-            <li><c:out value="${user.updated_at}" /></li>
-        </ul>
-        <hr>
+        </c:forEach>
+    </main>
 
-    </c:forEach>
+    <%@ include file="/partials/scripts.html" %>
 
 </body>
 </html>

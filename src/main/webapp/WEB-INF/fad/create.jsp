@@ -7,15 +7,15 @@
     <%@ include file="../../partials/navbar.jsp" %>
 
     <main class="container">
-        <h1>Create Fad</h1>
+        <h1 class="sub-title">Create Fad</h1>
 
-        <c:if test="${sessionScope.user == null}">
-            <h1>User is logged out</h1>
-        </c:if>
-
-        <form action="${pageContext.request.contextPath}/fads/create" method="POST">
-            <%@ include file="./partials/form.jsp" %>
-        </form>
+        <div class="card">
+            <div class="card-body">
+                <form action="${pageContext.request.contextPath}/fads/create" method="POST">
+                    <%@ include file="./partials/form.jsp" %>
+                </form>
+            </div>
+        </div>
     </main>
 
     <%@ include file="../../partials/scripts.html" %>

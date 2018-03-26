@@ -8,25 +8,22 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<label for="email">Email</label>
-<input type="text" name="email" id="email" placeholder="Enter fad title" value="${user.email}">
-<br>
+<div class="form-group">
+    <label for="email">Email</label>
+    <input class="form-control" type="text" name="email" id="email" placeholder="Enter fad title" value="${user.email}">
+</div>
 
-<label for="name">Name</label>
-<br>
-<input type="text" name="name" id="name" placeholder="Enter your name" value="${user.name}">
+<div class="form-group">
+    <label for="name">Name</label>
+    <input class="form-control" type="text" name="name" id="name" placeholder="Enter your name" value="${user.name}">
+</div>
 
-<br>
-
-<label for="password">Password</label>
-<input id="password" type="password" name="password" placeholder="Enter password">
-
-<br>
+<div class="form-group">
+    <label for="password">Password</label>
+    <input class="form-control" id="password" type="password" name="password" placeholder="Enter password">
+</div>
 
 <input type="hidden" name="id" value="${user.id}">
-
-<br>
-
-<button>Submit</button>
+<button class="btn btn-outline-primary btn-block">Submit</button>
 
 

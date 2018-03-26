@@ -28,7 +28,7 @@ public class FadsCreateServlet extends HttpServlet {
         String title = request.getParameter("title");
         String description = request.getParameter("description");
         String img_url = request.getParameter("img_url");
-        boolean passe = Boolean.getBoolean(request.getParameter("passe"));
+        boolean passe = Boolean.parseBoolean(request.getParameter("passe"));
 
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");

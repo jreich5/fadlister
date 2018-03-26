@@ -6,18 +6,25 @@
 
     <%@ include file="partials/navbar.jsp" %>
     <main class="container">
-        <h1>Please Login</h1>
-        <form action="${pageContext.request.contextPath}/login" method="POST">
+        <h1 class="clear-title">Please Login</h1>
+        <hr>
+        <div class="card">
+            <div class="card-body">
+                <form action="${pageContext.request.contextPath}/login" method="POST">
 
-            <label for="email">Email</label>
-            <input id="email" type="text" name="email" placeholder="Enter Email">
-            <br>
-            <label for="password">Password</label>
-            <input id="password" type="password" name="password">
-            <br>
-            <button>Submit</button>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input class="form-control" id="email" type="text" name="email" placeholder="Enter Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input class="form-control" id="password" type="password" name="password" placeholder="Enter Password">
+                    </div>
+                    <button class="btn btn-block btn-outline-primary">Submit</button>
 
-        </form>
+                </form>
+            </div>
+        </div>
     </main>
 
     <%@ include file="/partials/scripts.html" %>

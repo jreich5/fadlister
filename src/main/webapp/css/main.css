@@ -3,27 +3,52 @@
 body {
     margin: 0;
     background: #35A7FF;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Baloo Da', Helvetica, sans-serif;
     color: #FFFFFF;
     font-size: 1.3em;
+    min-height: 120vh;
 }
 
 h1 {
     text-align: center;
-}
-
-.container {
-    position: relative;
-    width: 80%;
-    margin: 0 auto;
-    max-width: 1400px;
+    font-size: 3em;
+    font-family: 'Baloo Da', cursive;
+    color: yellow;
 }
 
 .title {
-    text-align: center;
-    font-family: 'Baloo Da', cursive;
-    color: yellow;
     font-size: 5em;
+    font-family: 'Faster One', cursive;
+}
+
+.sub-title {
+    font-size: 4em;
+    font-family: 'Faster One', cursive;
+}
+
+.card {
+    color: black;
+}
+
+.container:nth-child(2) {
+    margin-top: 30px;
+}
+
+.styled-card,
+.styled-card ul li {
+    background-color: white;
+    color: black
+}
+
+.styled-card>a {
+    color: black;
+}
+
+
+
+.img-position {
+    position: relative;
+    right: 20px;
 }
 
 nav {
@@ -64,5 +89,13 @@ nav li:last-child a {
     border-right: none;
 }
 
+
+.card img {
+    object-fit: cover; /* Do not scale the image */
+    object-position: center; /* Center the image within the element */
+    width: 100%;
+    height: 400px;
+    margin-bottom: 1rem;
+}
 
 

@@ -3,6 +3,7 @@ package controllers.fads;
 import dao.DaoFactory;
 import dao.fads.Fads;
 import models.Fad;
+import models.User;
 import services.Auth;
 
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -51,6 +53,14 @@ public class FadsUpdateServlet extends HttpServlet {
         Fad fad = null;
 
         fad = fadsDao.findById((int) id);
+
+        HttpSession session = request.getSession();
+
+        User fadUser = fad.getUser();
+
+        if (fadUser == session.getAttribute("user")) {
+
+        }
 
         request.setAttribute("fad", fad);
 

@@ -15,8 +15,18 @@
 
     <main class="container">
         <h1 class="title">FadLister</h1>
-        <img src="img/dab.png" alt="">
-        <img src="img/elmo2.jpg" width="350">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="text-center">
+                    <img src="img/elmo2.jpg" width="350">
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="text-center">
+                   <img class="img-position" src="img/dab.png" alt="">
+                </div>
+            </div>
+        </div>
     </main>
 
     <%@ include file="/partials/scripts.html" %>
