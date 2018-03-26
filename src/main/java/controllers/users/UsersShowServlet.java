@@ -39,7 +39,7 @@ public class UsersShowServlet extends HttpServlet {
         request.setAttribute("user", user);
         request.setAttribute("fads", fads);
 
-        if (auth.getAuthUserId() == Long.parseLong(id)) {
+        if (auth.getLoggedUser().getId() == Long.parseLong(id)) {
             System.out.println("Ran");
             response.sendRedirect("/users/profile");
         } else {
