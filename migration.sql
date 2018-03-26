@@ -8,6 +8,8 @@
 # created_at, DATETIME
 # updated_at, DATETIME
 
+create DATABASE IF NOT EXISTS fad_db;
+
 USE fad_db;
 
 DROP TABLE IF EXISTS fads;
