@@ -1,35 +1,46 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>View Fads</title>
-    <link rel="stylesheet" type="text/css" href="../../css/main.css">
-    <script src="../../js/main.js"></script>
-</head>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="pageTitle" scope="request" value="FadLister: Fads"/>
+<%@ include file="../../partials/head.jsp" %>
 <body>
 
-    <%@ include file="../../partials/navbar.jsp" %>
+<%@ include file="../../partials/navbar.jsp" %>
 
-    <h1>Index of Fads <c:out value="${username}"/></h1>
+<main class="container">
+    <h1 class="sub-title">Fads</h1>
 
-    <c:forEach var="fad" items="${fads}">
+    <hr>
 
-        <h3><a href="${pageContext.request.contextPath}/fads/show?id=<c:out value="${fad.id}"/>"><c:out value="${fad.title}"/></a></h3>
-        <ul>
-            <li><c:out value="${fad.description}"/></li>
-            <li><c:out value="${fad.isPasse}"/></li>
-            <li><img src="<c:out value="${fad.img_url}" />"></li>
-            <li><c:out value="${fad.created_at}" /></li>
-            <li><c:out value="${fad.updated_at}" /></li>
-        </ul>
+    <div class="row">
+        <c:forEach var="fad" items="${fads}">
 
-    </c:forEach>
+            <div class="col-xl-4 col-lg-6 mb-5">
+                <div class="card styled-card">
+                    <a href="${pageContext.request.contextPath}/fads/show?id=<c:out value="${fad.id}"/>">
+                        <div class="card-body">
+                            <h3 class="card-title text-center"><c:out value="${fad.title}"/></h3>
+                        </div>
+                        <img class="card-img-bottom" src="<c:out value="${fad.img_url}" />">
+                    </a>
 
+                    <ul class="list-group">
+                        <li class="list-group-item">This fad is passe: <c:out value="${fad.passe}"/></li>
+                        <li class="list-group-item">
+                            <span class="card-text">Posted by:</span>
+                            <a class="card-link"
+                               href="${pageContext.request.contextPath}/users/show?id=<c:out value="${fad.user.id}"/>"><c:out
+                                    value="${fad.user.name}"/>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </c:forEach>
+    </div>
+</main>
+
+<%@ include file="../../partials/scripts.html" %>
 
 </body>
 </html>

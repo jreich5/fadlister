@@ -8,32 +8,32 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<label for="title">Title</label>
-<input type="text" name="title" id="title" placeholder="Enter fad title" value="${fad.title}">
-<br>
+<div class="form-group">
+    <label for="title">Title</label>
+    <input class="form-control" type="text" name="title" id="title" placeholder="Enter fad title" value="${fad.title}">
+</div>
 
-<label for="description">Description</label>
-<br>
-<textarea name="description" id="description" cols="30" rows="10" placeholder="Enter fad description">${fad.description}</textarea>
+<div class="form-group">
+    <label for="description">Description</label>
+    <textarea class="form-control" name="description" id="description" cols="30" rows="10" placeholder="Enter fad description">${fad.description}</textarea>
+</div>
 
-<br>
+<div class="form-group">
+    <label for="img">Image</label>
+    <input class="form-control" id="img" type="text" name="img_url" value="${fad.img_url}" placeholder="Enter image address">
+</div>
 
-<label for="img">Image</label>
-<input id="img" type="text" name="img_url" value="${fad.img_url}" placeholder="Enter image address">
-
-<br>
-
-<label for="isPasse">Is Passe?</label>
-<input id="isPasse" type="checkbox" name="isPasse" value="true"
-<c:if test="${fad.isPasse}">
-    ${"checked"}
-</c:if>
->
+<div class="form-group">
+    <label for="passe">Has this fad become passe yet?</label>
+    <input id="passe" type="checkbox" name="passe" value="true"
+    <c:if test="${fad.passe}">
+        ${"checked"}
+    </c:if>
+    >
+</div>
 
 <input type="hidden" name="id" value="${fad.id}">
 
-<br>
-
-<button>Submit</button>
+<button class="btn btn-block btn-outline-primary">Submit</button>
 
 

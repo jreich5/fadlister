@@ -1,8 +1,11 @@
-package controllers;
+package controllers.fads;
 
 import dao.DaoFactory;
-import dao.Fads;
+import dao.fads.Fads;
+import dao.users.Users;
 import models.Fad;
+import models.User;
+import services.Auth;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,23 +22,24 @@ import java.util.List;
 public class FadsIndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        Auth auth = new Auth(request);
+        if (!auth.shouldRedirect()) {
+            response.sendRedirect("/login");
+            return;
+        }
+
         Fads fadsDao = null;
 
         List<Fad> fads;
 
-        try {
-            fadsDao = DaoFactory.getFadsDao();
-            fads = fadsDao.all();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            fads = null;
-        }
+        fadsDao = DaoFactory.getFadsDao();
+        fads = fadsDao.all();
 
         HttpSession session = request.getSession();
         session.setAttribute("username", "John");
 
         request.setAttribute("fads", fads);
-        request.getRequestDispatcher("/index.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/fad/index.jsp").forward(request, response);
 
     }
 }

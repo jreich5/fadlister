@@ -5,16 +5,30 @@
   Time: 3:05 PM
   To change this template use File | Settings | File Templates.
 --%>
-
-<html>
-<head>
-    <title>Welcome to Fadlister</title>
-    <link rel="stylesheet" href="css/main.css">
-</head>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="pageTitle" scope="request" value="FadLister: Welcome"/>
+<%@ include file="/partials/head.jsp" %>
 <body>
 
     <%@ include file="partials/navbar.jsp" %>
-    <h1>Welcome to asdf</h1>
 
+    <main class="container">
+        <h1 class="title">FadLister</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="text-center">
+                    <img src="img/elmo2.jpg" width="350">
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="text-center">
+                   <img class="img-position" src="img/dab.png" alt="">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <%@ include file="/partials/scripts.html" %>
 </body>
 </html>
