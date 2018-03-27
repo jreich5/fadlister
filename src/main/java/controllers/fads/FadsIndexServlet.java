@@ -21,22 +21,14 @@ import java.util.List;
 @WebServlet(name = "FadsIndexServlet", urlPatterns = "/fads")
 public class FadsIndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Fads fadsDao = DaoFactory.getFadsDao();
+        List<Fad> fads = fadsDao.all();
 
         Auth auth = new Auth(request);
         if (!auth.shouldRedirect()) {
             response.sendRedirect("/login");
             return;
         }
-
-        Fads fadsDao = null;
-
-        List<Fad> fads;
-
-        fadsDao = DaoFactory.getFadsDao();
-        fads = fadsDao.all();
-
-        HttpSession session = request.getSession();
-        session.setAttribute("username", "John");
 
         request.setAttribute("fads", fads);
         request.getRequestDispatcher("/WEB-INF/fad/index.jsp").forward(request, response);

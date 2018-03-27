@@ -43,6 +43,3 @@ VALUES
 
 (1, 'Nu Metal', 'Nu metal (also known as nü-metal and aggro-metal) is a form of alternative metal that combines elements of heavy metal music with elements of other music genres such as hip hop, alternative rock, funk, industrial and grunge. Nu metal bands have drawn elements and influences from a variety of musical styles, including multiple genres of heavy metal. - (https://en.wikipedia.org/wiki/Nu_metal)
 ', '/img/nu-metal.jpg', true, NOW(), NOW());
-
-
-SELECT * FROM fads;

@@ -1,13 +1,10 @@
 package services;
 
-import com.sun.deploy.net.HttpRequest;
 import models.Fad;
 import models.User;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.util.Arrays;
 
 public class Auth {
@@ -30,14 +27,14 @@ public class Auth {
     public boolean shouldRedirect() {
         // if user is attempting to access a non-pre-authorized path, return false
         if (!Arrays.asList(preAuthorizedUrls).contains(request.getServletPath())) {
-            if (!verifyUser()) {
+            if (!isUserLoggedIn()) {
                 return false;
             }
         }
         return true;
     }
 
-    public boolean verifyUser() {
+    public boolean isUserLoggedIn() {
         return getLoggedUser() != null;
     }
 
@@ -46,7 +43,10 @@ public class Auth {
     }
 
     public boolean verifyFadUser(Fad fad) {
-        return getLoggedUser().getId() == fad.getUser().getId();
+        if (getLoggedUser() != null) {
+            return getLoggedUser().getId() == fad.getUser().getId();
+        }
+        return false;
     }
 
 }
