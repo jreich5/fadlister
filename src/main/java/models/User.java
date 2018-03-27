@@ -1,6 +1,7 @@
 package models;
 
 import services.DateService;
+import services.Password;
 
 public class User {
 
@@ -11,6 +12,7 @@ public class User {
     private String created_at;
     private String updated_at;
     private DateService ds = new DateService();
+    private Password passwordUtil = new Password();
 
     public User() {}
 
@@ -61,7 +63,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = passwordUtil.hashPassword(password);
     }
 
     public long getId() {

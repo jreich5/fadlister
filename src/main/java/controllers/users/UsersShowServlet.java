@@ -40,7 +40,6 @@ public class UsersShowServlet extends HttpServlet {
         request.setAttribute("fads", fads);
 
         if (auth.getLoggedUser().getId() == Long.parseLong(id)) {
-            System.out.println("Ran");
             response.sendRedirect("/users/profile");
         } else {
             request.getRequestDispatcher("/WEB-INF/user/show.jsp").forward(request, response);

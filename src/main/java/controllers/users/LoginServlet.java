@@ -20,19 +20,16 @@ public class LoginServlet extends HttpServlet {
 
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        Users usersDao = DaoFactory.getUsersDao();
+        // Complete this part
+        ///boolean verifiedId = usersDao.verifyEmailPass(email, password);
 
-        Users usersDao;
-
-        usersDao = DaoFactory.getUsersDao();
-
-        long verifiedId = usersDao.verifyEmailPass(email, password);
-
-        if (verifiedId == 0) {
+        if (verifiedId == true) {
             PrintWriter out = response.getWriter();
             out.println("<h1>Invalid Login!</h1>");
         } else {
             HttpSession session = request.getSession();
-            session.setAttribute("user", usersDao.find("id", Long.toString(verifiedId)));
+            session.setAttribute("user", usersDao.find("email",email));
             response.sendRedirect("/users/show?id=" + verifiedId);
         }
 

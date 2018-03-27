@@ -4,6 +4,7 @@ import com.mysql.cj.jdbc.Driver;
 import dao.Config;
 import models.User;
 import org.mindrot.jbcrypt.BCrypt;
+import services.Password;
 
 import javax.xml.transform.Result;
 import java.sql.*;
@@ -138,7 +139,7 @@ public class MySQLUsersDao implements Users {
             PreparedStatement ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, user.getName());
             ps.setString(2, user.getEmail());
-            ps.setString(3, hashPassword(user.getPassword()));
+            ps.setString(3, user.getPassword());
 
             ps.executeUpdate();
 
@@ -173,12 +174,6 @@ public class MySQLUsersDao implements Users {
             throw new RuntimeException("Error updating fad");
         }
     }
-
-    public String hashPassword(String password) {
-        int numberOfRounds = 12;
-        return BCrypt.hashpw(password, BCrypt.gensalt(numberOfRounds));
-    }
-
 
     @Override
     public long verifyEmailPass(String email, String pass) {
