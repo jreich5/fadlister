@@ -12,7 +12,7 @@ public class DaoFactory {
 
     private static Fads fadsDao;
     private static Users usersDao;
-    private static dao.Config config = new dao.Config();
+    private static Config config = new Config();
 
     public static Fads getFadsDao() {
         if (fadsDao == null) {
