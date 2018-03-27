@@ -36,12 +36,13 @@ public class MySQLFadsDao implements Fads {
                 "JOIN users AS u\n" +
                 "ON f.user_id = u.id\n" +
                 "WHERE user_id = ?";
+        List<Fad> fads = new ArrayList<>();
+
         try {
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setLong(1, user_id);
 
             ResultSet rs = ps.executeQuery();
-            List<Fad> fads = new ArrayList<>();
 
             while (rs.next()) {
                 fads.add(buildFadObject(rs));

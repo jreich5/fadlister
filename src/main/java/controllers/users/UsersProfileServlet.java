@@ -20,19 +20,16 @@ public class UsersProfileServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Auth auth = new Auth(request);
+        Users usersDao = DaoFactory.getUsersDao();
+        Fads fadsDao = DaoFactory.getFadsDao();
+        long id = auth.getLoggedUser().getId();
+        User user = usersDao.find("id", Long.toString(id));
+        List<Fad> fads = fadsDao.getFadsByUser(id);
+
         if (!auth.shouldRedirect()) {
             response.sendRedirect("/login");
             return;
         }
-
-        Users usersDao = DaoFactory.getUsersDao();
-        Fads fadsDao = DaoFactory.getFadsDao();
-
-        long id = auth.getLoggedUser().getId();
-
-        User user = usersDao.find("id", Long.toString(id));
-
-        List<Fad> fads = fadsDao.getFadsByUser(id);
 
         request.setAttribute("user", user);
         request.setAttribute("fads", fads);
