@@ -1,6 +1,10 @@
 package models;
 
+import services.DateService;
+
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class Fad implements Serializable {
 
@@ -12,6 +16,7 @@ public class Fad implements Serializable {
     private User user;
     private String created_at;
     private String updated_at;
+    private DateService ds = new DateService();
 
     public Fad() {
     }
@@ -86,7 +91,7 @@ public class Fad implements Serializable {
     }
 
     public String getCreated_at() {
-        return created_at;
+        return ds.parseDate(this.created_at);
     }
 
     public void setCreated_at(String created_at) {
@@ -94,7 +99,7 @@ public class Fad implements Serializable {
     }
 
     public String getUpdated_at() {
-        return updated_at;
+        return ds.parseDate(updated_at);
     }
 
     public void setUpdated_at(String updated_at) {

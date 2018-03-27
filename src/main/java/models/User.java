@@ -1,5 +1,7 @@
 package models;
 
+import services.DateService;
+
 public class User {
 
     private long id;
@@ -8,6 +10,7 @@ public class User {
     private String password;
     private String created_at;
     private String updated_at;
+    private DateService ds = new DateService();
 
     public User() {}
 
@@ -70,7 +73,7 @@ public class User {
     }
 
     public String getCreated_at() {
-        return created_at;
+        return ds.parseDate(this.created_at);
     }
 
     public void setCreated_at(String created_at) {
@@ -78,7 +81,7 @@ public class User {
     }
 
     public String getUpdated_at() {
-        return updated_at;
+        return ds.parseDate(this.updated_at);
     }
 
     public void setUpdated_at(String updated_at) {

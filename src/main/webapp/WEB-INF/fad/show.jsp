@@ -1,10 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:set var="pageTitle" scope="request" value="FadLister: View Fad"/>
-<%@ include file="../../partials/head.jsp" %>
+<jsp:include page="/partials/head.jsp">
+    <jsp:param name="pageTitle" value="View Fad" />
+</jsp:include>
+
 <body>
 
-<%@ include file="../../partials/navbar.jsp" %>
+<%@ include file="/partials/navbar.jsp" %>
 
 <main class="container">
 
@@ -22,7 +24,7 @@
                         <li class="list-group-item">Date Posted: <c:out value="${fad.created_at}"/></li>
                         <li class="list-group-item">Updated: <c:out value="${fad.updated_at}"/></li>
                         <li class="list-group-item">
-                            Posted by: <a class="card-link" href="${pageContext.request.contextPath}/users/show?id=<c:out value="${fad.user.id}"/>"><c:out value="${fad.user.name}"/></a>
+                            Posted by: <a class="card-link" href="${pageContext.request.contextPath}/users/show?id=${fad.user.id}"><c:out value="${fad.user.name}"/></a>
                         </li>
                         <c:if test="${currentUserFad}">
                             <li class="list-group-item">

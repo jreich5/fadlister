@@ -19,28 +19,25 @@ import java.sql.SQLException;
 public class FadsShowServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        boolean currentUserFad;
+        long fadID = Long.parseLong(request.getParameter("id"));
+        //1
+        Fads fadsDao = DaoFactory.getFadsDao();
+        HttpSession session = request.getSession();
         Auth auth = new Auth(request);
+        Fad fad = fadsDao.findById((int) fadID);
+
         if (!auth.shouldRedirect()) {
             response.sendRedirect("/login");
             return;
         }
 
-        Fads fadsDao = DaoFactory.getFadsDao();
-
-        HttpSession session = request.getSession();
-
-        boolean currentUserFad;
-
-        long id = Long.parseLong(request.getParameter("id"));
-
         if (auth.verifyUser()) {
             User user = (User) session.getAttribute("user");
-            currentUserFad = user.getId() == id;
+            currentUserFad = user.getId() == fad.getUser().getId();
         } else {
             currentUserFad = false;
         }
-
-        Fad fad = fadsDao.findById((int) id);
 
         request.setAttribute("fad", fad);
         request.setAttribute("currentUserFad", currentUserFad);

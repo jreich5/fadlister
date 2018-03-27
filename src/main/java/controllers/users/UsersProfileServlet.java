@@ -28,7 +28,7 @@ public class UsersProfileServlet extends HttpServlet {
         Users usersDao = DaoFactory.getUsersDao();
         Fads fadsDao = DaoFactory.getFadsDao();
 
-        long id = auth.getAuthUserId();
+        long id = auth.getLoggedUser().getId();
 
         User user = usersDao.find("id", Long.toString(id));
 

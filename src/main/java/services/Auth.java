@@ -20,9 +20,11 @@ public class Auth {
             "/register",
             "/fads/show"
     };
+    HttpSession session;
 
     public Auth(HttpServletRequest request) {
         this.request = request;
+        this.session = this.request.getSession();
     }
 
     public boolean shouldRedirect() {
@@ -36,21 +38,15 @@ public class Auth {
     }
 
     public boolean verifyUser() {
-        HttpSession session = request.getSession();
-        return session.getAttribute("user") != null;
+        return getLoggedUser() != null;
     }
 
-    public long getAuthUserId() {
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-        return user.getId();
+    public User getLoggedUser(){
+        return (User) this.session.getAttribute("user");
     }
 
     public boolean verifyFadUser(Fad fad) {
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-        User fadUser = fad.getUser();
-        return user.getId() == fadUser.getId();
+        return getLoggedUser().getId() == fad.getUser().getId();
     }
 
 }
