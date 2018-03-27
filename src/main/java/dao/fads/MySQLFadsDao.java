@@ -44,22 +44,7 @@ public class MySQLFadsDao implements Fads {
             List<Fad> fads = new ArrayList<>();
 
             while (rs.next()) {
-                Fad fad = new Fad();
-                fad.setId(rs.getLong("f.id"));
-                fad.setTitle(rs.getString("f.title"));
-                fad.setDescription(rs.getString("f.description"));
-                fad.setImg_url(rs.getString("f.img_url"));
-                fad.setPasse(rs.getBoolean("f.passe"));
-                fad.setCreated_at(rs.getString("f.created_at"));
-                fad.setUpdated_at(rs.getString("f.updated_at"));
-                fad.setUser(
-                        new User(
-                                rs.getLong("u.id"),
-                                rs.getString("u.name"),
-                                rs.getString("u.email")
-                        )
-                );
-                fads.add(fad);
+                fads.add(buildFadObject(rs));
             }
 
             return fads;
@@ -70,6 +55,25 @@ public class MySQLFadsDao implements Fads {
         }
     }
 
+    private Fad buildFadObject(ResultSet rs) throws SQLException {
+        Fad fad = new Fad();
+        fad.setId(rs.getLong("f.id"));
+        fad.setTitle(rs.getString("f.title"));
+        fad.setDescription(rs.getString("f.description"));
+        fad.setImg_url(rs.getString("f.img_url"));
+        fad.setPasse(rs.getBoolean("f.passe"));
+        fad.setCreated_at(rs.getString("f.created_at"));
+        fad.setUpdated_at(rs.getString("f.updated_at"));
+        fad.setUser(
+                new User(
+                        rs.getLong("u.id"),
+                        rs.getString("u.name"),
+                        rs.getString("u.email")
+                )
+        );
+        return fad;
+    }
+
     @Override
     public List<Fad> all() {
 
@@ -77,28 +81,15 @@ public class MySQLFadsDao implements Fads {
                 "FROM fads AS f\n" +
                 "JOIN users AS u\n" +
                 "ON f.user_id = u.id";
+
+        List<Fad> fads = new ArrayList<>();
+
         try {
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(query);
-            List<Fad> fads = new ArrayList<>();
 
             while (rs.next()) {
-                Fad fad = new Fad();
-                fad.setId(rs.getLong("f.id"));
-                fad.setTitle(rs.getString("f.title"));
-                fad.setDescription(rs.getString("f.description"));
-                fad.setImg_url(rs.getString("f.img_url"));
-                fad.setPasse(rs.getBoolean("f.passe"));
-                fad.setCreated_at(rs.getString("f.created_at"));
-                fad.setUpdated_at(rs.getString("f.updated_at"));
-                fad.setUser(
-                        new User(
-                                rs.getLong("u.id"),
-                                rs.getString("u.name"),
-                                rs.getString("u.email")
-                        )
-                );
-                fads.add(fad);
+                fads.add(buildFadObject(rs));
             }
 
             return fads;

@@ -1,10 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:set var="pageTitle" scope="request" value="FadLister: Fads"/>
-<%@ include file="../../partials/head.jsp" %>
+<jsp:include page="/partials/head.jsp">
+    <jsp:param name="pageTitle" value="Fads" />
+</jsp:include>
 <body>
 
-<%@ include file="../../partials/navbar.jsp" %>
+<%@ include file="/partials/navbar.jsp" %>
 
 <main class="container">
     <h1 class="sub-title">Fads</h1>
@@ -40,7 +41,7 @@
     </div>
 </main>
 
-<%@ include file="../../partials/scripts.html" %>
+<%@ include file="/partials/scripts.html" %>
 
 </body>
 </html>
